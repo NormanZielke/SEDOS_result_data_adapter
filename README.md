@@ -1,0 +1,1 @@
+# SEDOS_result_data_adapter

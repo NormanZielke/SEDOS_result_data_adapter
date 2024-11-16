@@ -16,7 +16,7 @@ def split_name(name):
 def name_function(data,results,columns):
     for i in data.index:
         a = split_name(data.loc[i, "name"])
-        # verschieden verzweigungen, abhängig von den Einträgen in der Spalte "name"
+        # verschiedene verzweigungen, abhängig von den Einträgen in der Spalte "name"
         if len(a) == 1:
             results.loc[i, columns[2]] = data.loc[i, "name"]
             continue
@@ -42,7 +42,7 @@ def var_name_function(data,results):
     weighted_units = ["Mt","Mt/a","kg"]
     for i in data.index:
         a = data.loc[i, "var_name"].split('_')
-        # verschieden verzweigungen, abhängig von den Einträgen in der Spalte "var_name"
+        # verschiedene verzweigungen, abhängig von den Einträgen in der Spalte "var_name"
         # invest - Verzweigung
         if a[0] == "invest":
             if data.loc[i,"unit"] in energy_units:

@@ -2,6 +2,11 @@ import pandas as pd
 
 # Testet, ob im "name" am Ende eine Zahl steht
 def split_name(name):
+    '''
+    :param name: (string) Entry in the “name” column of result.csv
+    :return: (list) of strings
+    :logik: divide a "_"-seprated string into a list of strings
+    '''
     a = name.split('_')
     if len(a) == 1:
         return a
@@ -13,29 +18,29 @@ def split_name(name):
             return name.split('_')
 
 # Teilt die Einträge in Spalte "name" von data und entsprechende Zuordnung in Spalten von results
-def name_function(data,output,columns):
+def name_function(data,output):
     for i in data.index:
         a = split_name(data.loc[i, "name"])
         # verschiedene verzweigungen, abhängig von den Einträgen in der Spalte "name"
         if len(a) == 1:
-            output.loc[i, columns[2]] = data.loc[i, "name"]
+            output.loc[i, "process"] = data.loc[i, "name"]
             continue
         if isinstance(a[-1], int):
-            output.loc[i, columns[2]] = data.loc[i, "name"]
-            output.loc[i, columns[3]] = a[0]
+            output.loc[i, "process"] = data.loc[i, "name"]
+            output.loc[i, "sector"] = a[0]
             a = a[1:]
-            output.loc[i, columns[4]] = a[0]
+            output.loc[i, "category"] = a[0]
             a = a[1:]
-            output.loc[i, columns[7]] = a[-1]
+            output.loc[i, "new"] = a[-1]
             a = a[:-1]
-            output.loc[i, columns[5]] = a
+            output.loc[i, "specification"] = a
         else:
-            output.loc[i, columns[2]] = data.loc[i, "name"]
-            output.loc[i, columns[3]] = a[0]
+            output.loc[i, "process"] = data.loc[i, "name"]
+            output.loc[i, "sector"] = a[0]
             a = a[1:]
-            output.loc[i, columns[4]] = a[0]
+            output.loc[i, "category"] = a[0]
             a = a[1:]
-            output.loc[i, columns[5]] = a
+            output.loc[i, "specification"] = a
 
 def var_name_function(data,output):
     energy_units = ["MWh","kWh","PJ"]

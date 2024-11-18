@@ -57,9 +57,9 @@ output.scenario = "o_steel_tokio"
 '''
 # --------------------------------------------------------------------------------------------------------------------->
 
-# fill the results dataframe with data incl. testdata
+# fill the output dataframe with data incl. testdata
 
-name_function(data2,output,columns) # evtl. columns als argument entfernen
+name_function(data2,output) # evtl. columns als argument entfernen
 
 var_name_function(data2,output)
 

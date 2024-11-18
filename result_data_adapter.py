@@ -11,7 +11,7 @@ columns = ["scenario", "parameter", "process", "sector", "category",
                "specification", "groups", "new", "input_groups",
                "output_groups", "unit", "value"]
 
-results = pd.DataFrame(columns= columns)
+output = pd.DataFrame(columns= columns)
 
 # Vorbereitung Input
 
@@ -47,32 +47,32 @@ data2 = pd.concat([data, df_test], ignore_index=True)
 '''
 # fill the results dataframe with data
 
-name_function(data,results,columns) # evtl. columns als argument entfernen
+name_function(data,output,columns) # evtl. columns als argument entfernen
 
-var_name_function(data,results)
+var_name_function(data,output)
 
-results.value = data.var_value
+output.value = data.var_value
 
-results.scenario = "o_steel_tokio"
+output.scenario = "o_steel_tokio"
 '''
 # --------------------------------------------------------------------------------------------------------------------->
 
 # fill the results dataframe with data incl. testdata
 
-name_function(data2,results,columns) # evtl. columns als argument entfernen
+name_function(data2,output,columns) # evtl. columns als argument entfernen
 
-var_name_function(data2,results)
+var_name_function(data2,output)
 
-results.value = data2.var_value
+output.value = data2.var_value
 
-results.scenario = "o_steel_tokio"
+output.scenario = "o_steel_tokio"
 
 # --------------------------------------------------------------------------------------------------------------------->
 
 # save data as excel sheet
 
 with pd.ExcelWriter("SEDOS_output.xlsx") as writer:
-    results.to_excel(writer, sheet_name="SEDOS_output", index=False)
+    output.to_excel(writer, sheet_name="SEDOS_output", index=False)
 
 # Lade die erstellte Excel-Datei mit openpyxl
 wb = load_workbook("SEDOS_output.xlsx")
